@@ -48,15 +48,12 @@ class ArraysTests {
 		int ar1[] = {1,2,3};
 		int ar2[] = {4,5};
 		int expected[] = {1,2,3,4,5};
-		//TODO
 		System.arraycopy(ar1, 0, ar, 0,ar1.length);
 		System.arraycopy(ar2, 0, ar, ar1.length,ar2.length);
-		
 		assertArrayEquals(expected, ar);
 	}
 	@Test void systemArrayShift() {
 		int ar[] = {1,2,3,4,5};
-		//TODO using System.arraycopy
 		int expexted[] = {2,3,4,5,0};
 		System.arraycopy(ar, 1, ar, 0, ar.length-1);
 		ar[ar.length-1]=0;
@@ -67,7 +64,6 @@ class ArraysTests {
 		int ar[] = {1,2,3,4,5};
 		int actual[] = new int[4];
 		int expected[] = {1,2,4,5};
-		//TODO make sure the following assert will pass using System.arraycopy
 		System.arraycopy(ar, 0, actual, 0, 2);
 		System.arraycopy(ar, 3, actual, 2, 2);
 		assertArrayEquals(expected, actual);
@@ -77,30 +73,41 @@ class ArraysTests {
 		int ar[] = {1,2,3,4,5};
 		int actual[] = new int[6];
 		int expected[] = {1,2,3,-10,4,5};
-		//TODO make sure the following assert will pass using System.arraycopy
-		
-		
-		//assertArrayEquals(expected, actual);
+		System.arraycopy(ar,0,actual,0,3);
+		System.arraycopy(ar,3,actual,4,2);
+		actual[3]=-10;
+		assertArrayEquals(expected, actual);
 	}
 	@Test
 	void arraysCopyOf() {
-		//TODO write tests for Arrays.copyOf functionality according to the doc
-//		Arrays.copyOf(null, 0);	
+		int ar[] = {1,2,3};
+		int expected[] = {1,2,3,10,0};
+		int actual[] = Arrays.copyOf(ar, 5);	
+		actual[3]=10;
+		assertArrayEquals(expected, actual);
 	}
 	@Test 
 	void arrayCopyOfRange() {
-		//TODO write tests for Arrays.copyOfRange functionality according to the doc
-//		Arrays.copyOfRange(null, 0, 0)
+		int ar[] = {1,2,3,4,5};
+		int expected[] = {3,4};
+		int actual[]=Arrays.copyOfRange(ar, 2, 4);
+		assertArrayEquals(expected, actual);
 	}
 	@Test 
 	void arraysSort() {
-		//TODO write tests for Arrays.sort functionality according to the doc
-
+		int[] ar = {102,201,100,202,403,300};
+		int expected[] = {100,102,201,202,300,403};
+		Arrays.sort(ar);
+		assertArrayEquals(expected, ar);
 	}
 	@Test 
 	void arraysBinarySearch() {
-		//TODO write tests for Arrays.binarySearch functionality according to the doc
-
+		int ar[] = {102,201,100,202,403,300};
+		int intKey = 202;
+		Arrays.sort(ar);
+		int actual = Arrays.binarySearch(ar, intKey);
+		int expected = 3;
+		assertEquals(expected, actual);
 	}
 	}
 
